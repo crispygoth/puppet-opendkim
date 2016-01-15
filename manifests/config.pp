@@ -32,6 +32,7 @@ class opendkim::config(
   $umask                   = $opendkim::params::umask,
   $oversignheaders         = $opendkim::params::oversignheaders,
   $internalhosts           = $opendkim::params::internalhosts,
+  $custom_config           = {}
 ) inherits ::opendkim::params {
 
   concat { ['/etc/opendkim.conf', '/etc/default/opendkim', '/etc/opendkim_keytable.conf', '/etc/opendkim_signingtable.conf']:
