@@ -50,7 +50,8 @@ define opendkim::domain(
       group   => 'root',
       mode    => '0600',
       source  => $private_key_source,
-      content => $private_key_content;
+      content => $private_key_content,
+      require => Package['opendkim'],
   }
 
   # Add keytable and signing table to config, but only once
