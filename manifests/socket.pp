@@ -7,7 +7,7 @@
 # [*type*]
 #   Your MTA and your opendkim filter will communicate over a socket
 #   connection. Set type to 'inet' for a TCP network socket or to
-#   'file' for a UNIX filesystem socket.
+#   'local' for a UNIX filesystem socket.
 #   They each have advantages: A UNIX socket can be secured using the
 #   filesystem (i.e., with user or group permissions), but cannot be
 #   reached from other machines that might want to share the service.
@@ -57,7 +57,7 @@ define opendkim::socket(
         default => "${type}:${port}@${interface}",
       }
     }
-    'file': {
+    'local': {
       $socket = "${type}:${file}"
     }
     default: {
