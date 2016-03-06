@@ -67,7 +67,7 @@ define opendkim::socket(
   concat::fragment{ $socket:
     target  => '/etc/default/opendkim',
     content => "SOCKET=${socket} # ${name}\n",
-    order   => 10;
+    order   => "10 ${name}";
   }
 }
 

@@ -65,21 +65,21 @@ define opendkim::domain(
   concat::fragment{ "signingtable_${name}":
     target  => '/etc/opendkim_signingtable.conf',
     content => "${signing_key} ${selector}._domainkey.${domain}\n",
-    order   => 10,
+    order   => "10 ${name}",
     require => File[$key_file],
   }
   if ($subdomains) {
     concat::fragment{ "signingtable_${name}_subdomains":
       target  => '/etc/opendkim_signingtable.conf',
       content => ".${signing_key} ${selector}._domainkey.${domain}\n",
-      order   => 10,
+      order   => "10 ${name}",
       require => File[$key_file],
     }
   }
   concat::fragment{ "keytable_${name}":
     target  => '/etc/opendkim_keytable.conf',
     content => "${selector}._domainkey.${domain} ${domain}:${selector}:${key_file}\n",
-    order   => 10,
+    order   => "10 ${name}",
     require => File[$key_file],
   }
 }
